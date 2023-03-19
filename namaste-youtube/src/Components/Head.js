@@ -20,12 +20,15 @@ const Head = () => {
             alt="menu"
           />
         </div>
+
         <div>
-          <img
-            className="h-14 ml-3"
-            src="https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png"
-            alt="logo"
-          />
+          <a href="/">
+            <img
+              className="h-14 ml-3"
+              src="https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png"
+              alt="logo"
+            />
+          </a>
         </div>
       </div>
       <div className="flex items-center justify-center col-span-10">
