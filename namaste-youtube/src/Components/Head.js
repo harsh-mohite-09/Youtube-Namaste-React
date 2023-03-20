@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
+import { SEARCH_API } from "../utils/config";
 
 const Head = () => {
-  const dispatch = useDispatch();
+  const [searchQuery, setSearchQuery] = useState("");
 
+  useEffect(() => {
+    const timer = setTimeout(() => getSearchSuggestions(), 200);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchQuery]);
+
+  const getSearchSuggestions = async () => {
+    const data = await fetch(SEARCH_API + searchQuery);
+    const json = await data.json();
+    console.log(json[1]);
+  };
+
+  const dispatch = useDispatch();
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   };
@@ -33,6 +49,8 @@ const Head = () => {
       </div>
       <div className="flex items-center justify-center col-span-10">
         <input
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
           className="border border-gray-500 rounded-l-full h-10 w-1/3 px-4"
           type="text"
           autoFocus
