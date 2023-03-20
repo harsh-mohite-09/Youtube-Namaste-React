@@ -38,7 +38,7 @@ const Head = () => {
           autoFocus
           placeholder="Search"
         />
-        <button className="bg-gray-100 py-[0.4rem] pr-2 pl-1 h-10 rounded-r-full border border-l-0 border-gray-500 text-sm">
+        <button className="bg-gray-100 py-[0.4rem] pr-2 pl-1 h-10 rounded-r-full border border-l-0 border-gray-500 text-sm hover:bg-gray-200">
           <img
             className="h-full mx-4"
             src="https://icones.pro/wp-content/uploads/2021/02/loupe-et-icone-de-recherche-de-couleur-grise.png"

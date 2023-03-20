@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
+import { openMenu } from "../utils/appSlice";
 import Sidebar from "./Sidebar";
-// import MainContainer from "./MainContainer";
-// import WatchPage from "./WatchPage";
 
 const Body = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(openMenu());
+  });
+
   return (
     <div className="flex">
       <Sidebar />
