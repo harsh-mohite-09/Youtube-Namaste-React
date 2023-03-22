@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { SEARCH_API } from "../utils/config";
+import { useSelector, useDispatch } from "react-redux";
+import { cacheResults } from "../utils/searchSlice";
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [isSearchFocus, setIsSearchFocus] = useState(false);
 
+  const cachedSearchResults = useSelector(
+    (store) => store.search.cachedResults
+  );
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    const timer = setTimeout(() => getSearchSuggestions(), 50);
+    const timer = setTimeout(() => {
+      if (cachedSearchResults[searchQuery]) {
+        setSearchResult(cachedSearchResults[searchQuery]);
+        console.log("Already Cached");
+      } else {
+        getSearchSuggestions();
+      }
+    }, 100);
 
     return () => {
       clearTimeout(timer);
@@ -20,10 +33,9 @@ const Head = () => {
     const data = await fetch(SEARCH_API + searchQuery);
     const json = await data.json();
     setSearchResult(json[1]);
+    dispatch(cacheResults({ [searchQuery]: json[1] }));
     console.log(json[1]);
   };
-
-  const dispatch = useDispatch();
 
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
