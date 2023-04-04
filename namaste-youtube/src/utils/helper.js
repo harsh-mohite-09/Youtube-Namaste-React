@@ -1,3 +1,5 @@
+const API_KEY = "AIzaSyA0RRNzEkg1cKfQ_Mp-VBNEY9M6t0wO4FI";
+
 export const findPrime = (num) => {
   let i,
     primes = [2, 3],
@@ -23,4 +25,12 @@ export const findPrime = (num) => {
     n += 2;
   }
   return primes[num - 1];
+};
+
+export const getSearchQueryUrl = (query) => {
+  return `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${query}&type=video&key=${API_KEY}`;
+};
+
+export const getVideoDetails = (videoId) => {
+  return `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`;
 };

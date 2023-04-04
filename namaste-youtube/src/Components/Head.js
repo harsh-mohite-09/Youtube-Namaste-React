@@ -3,6 +3,9 @@ import { toggleMenu } from "../utils/appSlice";
 import { SEARCH_API } from "../utils/config";
 import { useSelector, useDispatch } from "react-redux";
 import { cacheResults } from "../utils/searchSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -42,25 +45,25 @@ const Head = () => {
   };
 
   return (
-    <div className="grid grid-flow-col p-5 m-2 shadow-md">
+    <div className="grid grid-flow-col p-5 m-2 mt-0 shadow-md fixed top-0 w-full bg-white">
       <div className="flex items-center col-span-1">
-        <div>
-          <img
+        <div className="p-3  hover:bg-slate-200 rounded-full">
+          <FontAwesomeIcon
+            icon={faBars}
+            size="xl"
             onClick={() => toggleMenuHandler()}
-            className="h-8 cursor-pointer"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1024px-Hamburger_icon.svg.png"
-            alt="menu"
+            className="cursor-pointer"
           />
         </div>
 
         <div>
-          <a href="/">
+          <Link to="/">
             <img
               className="h-14 ml-3"
               src="https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png"
               alt="logo"
             />
-          </a>
+          </Link>
         </div>
       </div>
       <div className="flex justify-center items-center col-span-10">
@@ -73,28 +76,41 @@ const Head = () => {
               type="text"
               autoFocus
               onFocus={() => setIsSearchFocus(true)}
-              onBlur={() => setIsSearchFocus(false)}
+              onBlur={() =>
+                setTimeout(() => {
+                  setIsSearchFocus(false);
+                }, 100)
+              }
               placeholder="Search"
             />
-            <button className="bg-gray-100 py-[0.4rem] pr-2 pl-1 h-10 rounded-r-full border border-l-0 border-gray-500 text-sm hover:bg-gray-200">
-              <img
-                className="h-full mx-4"
-                src="https://icones.pro/wp-content/uploads/2021/02/loupe-et-icone-de-recherche-de-couleur-grise.png"
-                alt="search"
-              />
-            </button>
+            <Link
+              to={`results?search_query=${
+                searchQuery.length ? searchQuery : "most+popular"
+              }`}
+            >
+              <button className="bg-gray-100 py-[0.4rem] pr-2 pl-1 h-10 rounded-r-full border border-l-0 border-gray-500 text-sm hover:bg-gray-200">
+                <img
+                  className="h-full mx-4"
+                  src="https://icones.pro/wp-content/uploads/2021/02/loupe-et-icone-de-recherche-de-couleur-grise.png"
+                  alt="search"
+                />
+              </button>
+            </Link>
           </div>
           {searchResult.length !== 0 && isSearchFocus && (
             <div className="w-[88%] absolute top-14">
               <ul className="ml-3 p-2 shadow-lg shadow-neutral-500 rounded-lg bg-white">
                 {searchResult.map((e) => {
                   return (
-                    <li
-                      className="p-1 hover:bg-gray-100 cursor-pointer rounded-md"
+                    <Link
+                      to={`results?search_query=${e}`}
+                      onClick={() => setSearchQuery(e)}
                       key={e}
                     >
-                      🔍 {e}
-                    </li>
+                      <li className="p-1 hover:bg-gray-100 cursor-pointer rounded-md">
+                        🔍 {e}
+                      </li>
+                    </Link>
                   );
                 })}
               </ul>
@@ -102,7 +118,6 @@ const Head = () => {
           )}
         </div>
       </div>
-
       <div className="col-span-1">
         <div className="flex justify-end items-center h-full">
           <img

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { appendChat } from "../utils/chatSlice";
+import { appendChat, clearChat } from "../utils/chatSlice";
 import ChatMessage from "./ChatMessage";
 
 const LiveChat = () => {
@@ -22,7 +22,10 @@ const LiveChat = () => {
       );
     }, 2000);
 
-    return () => clearInterval(myInterval);
+    return () => {
+      clearInterval(myInterval);
+      dispatch(clearChat());
+    };
   }, []);
   return (
     <div className="h-[538px] flex flex-col">

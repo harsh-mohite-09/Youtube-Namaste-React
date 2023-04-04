@@ -4,7 +4,7 @@ import { BUTTON_LIST } from "../utils/config";
 
 const ButtonList = () => {
   return (
-    <div className="flex">
+    <div className="flex ml-8">
       {BUTTON_LIST.map((e, i) => (
         <Button name={e} key={i} />
       ))}

@@ -14,7 +14,7 @@ const WatchPage = () => {
   });
 
   return (
-    <div className="flex flex-col w-full px-5">
+    <div className="flex flex-col w-full px-5 col-span-5">
       <div className="flex ml-20 mt-5">
         <div className="rounded-xl overflow-hidden">
           <iframe
