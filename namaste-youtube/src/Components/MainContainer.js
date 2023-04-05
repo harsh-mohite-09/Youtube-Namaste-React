@@ -8,8 +8,8 @@ const MainContainer = () => {
 
   return (
     <div
-      className={`p-5 flex flex-col items-center col-span-${
-        isMenuOpen ? "6" : "7"
+      className={`p-5 flex flex-col items-center ${
+        isMenuOpen ? "col-start-2 col-end-8" : "col-start-1 col-end-8"
       }`}
     >
       <ButtonList />

@@ -12,7 +12,7 @@ const Body = () => {
   });
 
   return (
-    <div className="grid grid-cols-7 mt-28">
+    <div className="mt-28 grid grid-cols-7">
       <Sidebar />
       <Outlet />
     </div>
