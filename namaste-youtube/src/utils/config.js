@@ -20,7 +20,7 @@ export const API_URL =
   API_KEY;
 
 export const SEARCH_API =
-  "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+  "https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
 export const SEARCH_DATA = {
   kind: "youtube#searchListResponse",
