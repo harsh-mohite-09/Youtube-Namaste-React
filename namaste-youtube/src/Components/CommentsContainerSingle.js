@@ -105,19 +105,23 @@ import React from "react";
 // ];
 
 const Comment = ({ data }) => {
-  const { authorDisplayName, authorProfileImageUrl, textDisplay } = data;
+  const { authorDisplayName, authorProfileImageUrl, textOriginal } = data;
   return (
     <div className="mt-2 flex bg-gray-100 p-2 rounded-lg">
-      <div className="flex ">
+      <div className="w-8">
         <img
-          className="h-8 rounded-full"
+          className="h-8 w-8 rounded-full"
           src={authorProfileImageUrl}
-          alt="user-icon"
+          onError={(e) => {
+            e.target.src =
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeZKQdM4lHPJTtDShA1844FFOUZo99NLV2zM73YSFX5A&s";
+          }}
+          alt=""
         />
       </div>
-      <div className="ml-2">
+      <div className="ml-2 w-[95%]">
         <p className="font-bold h-8">{authorDisplayName}</p>
-        <p>{textDisplay}</p>
+        <p className="w-full">{textOriginal}</p>
       </div>
     </div>
   );
@@ -132,7 +136,7 @@ const CommentsList = ({ comments }) => {
       },
     } = comment;
     return (
-      <div key={id}>
+      <div key={id} className="w-full">
         <Comment data={snippet} />
       </div>
     );

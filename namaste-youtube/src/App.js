@@ -10,12 +10,14 @@ import MainContainer from "./Components/MainContainer";
 import WatchPage from "./Components/WatchPage";
 import SearchResultsPage from "./Components/SearchResultsPage";
 import store from "./utils/store";
+import ScrollToTop from "./utils/ScrollToTop";
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
     element: (
       <>
+        <ScrollToTop />
         <Head />
         <Body />
       </>
