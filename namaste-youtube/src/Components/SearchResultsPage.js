@@ -22,7 +22,7 @@ const SearchResultsPage = () => {
   };
 
   return (
-    <div className="col-span-5 flex justify-center">
+    <div className="col-span-6 flex justify-center">
       <div className="flex flex-col w-4/5">
         {searchResults.map((video) => {
           const { title, description, thumbnails } = video.snippet;

@@ -1,4 +1,4 @@
-const API_KEY = "AIzaSyA0RRNzEkg1cKfQ_Mp-VBNEY9M6t0wO4FI";
+const API_KEY = "AIzaSyCiYQGeImQ5IJ9p15wkz_wi1altVFOe83U";
 
 export const findPrime = (num) => {
   let i,
@@ -31,6 +31,6 @@ export const getSearchQueryUrl = (query) => {
   return `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${query}&type=video&key=${API_KEY}`;
 };
 
-export const getVideoDetails = (videoId) => {
+export const getVideoDetailsUrl = (videoId) => {
   return `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`;
 };

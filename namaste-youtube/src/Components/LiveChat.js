@@ -13,10 +13,10 @@ const LiveChat = () => {
     const myInterval = setInterval(() => {
       //API Polling
       id++;
-      console.log("API Polling");
+      // console.log("API Polling");
       dispatch(
         appendChat({
-          name: "Akshay Saini",
+          name: "Akshay",
           message: "Hi. I am Akshay Saini. " + id,
         })
       );
@@ -28,13 +28,13 @@ const LiveChat = () => {
     };
   }, []);
   return (
-    <div className="h-[538px] flex flex-col">
+    <div className="h-[500px] flex flex-col">
       <div className="h-[90%] p-2 border border-black bg-slate-100 rounded-lg overflow-y-auto flex flex-col-reverse">
         {liveChatData.map(({ name, message }, i) => (
           <ChatMessage name={name} message={message} key={i} />
         ))}
       </div>
-      <div className="flex flex-grow items-center justify-between">
+      <div className="flex items-center justify-between">
         <input
           type="text"
           value={myMessage}
