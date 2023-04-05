@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { closeMenu } from "../utils/appSlice";
-import CommentsContainer from "./CommentsContainer";
+import CommentsContainerSingle from "./CommentsContainerSingle";
 import LiveChat from "./LiveChat";
-import { getVideoDetailsUrl } from "../utils/helper";
+import { getVideoDetailsUrl, getCommentsUrl } from "../utils/helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -15,19 +15,28 @@ import {
 
 const WatchPage = () => {
   const [videoDetails, setVideoDetails] = useState([]);
+  const [comments, setComments] = useState([]);
   const [searchParams] = useSearchParams();
   console.log(searchParams.get("v"));
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(closeMenu());
     getVideoDetails();
+    getComments();
   }, []);
 
   const getVideoDetails = async () => {
     const data = await fetch(getVideoDetailsUrl(searchParams.get("v")));
     const json = await data.json();
-    console.log(json);
+    console.log("video", json);
     setVideoDetails(json.items[0]);
+  };
+
+  const getComments = async () => {
+    const data = await fetch(getCommentsUrl(searchParams.get("v")));
+    const json = await data.json();
+    console.log("comments", json.items);
+    setComments(json.items);
   };
 
   const getLikeCount = (likeCount) => {
@@ -38,6 +47,10 @@ const WatchPage = () => {
     return subscriberCount > 1_000_000
       ? `${(subscriberCount / 1000000).toFixed(1)}M`
       : `${Math.floor(subscriberCount / 1000).toFixed(0)}K`;
+  };
+
+  const getTrimmedVideoTitle = (title) => {
+    return title?.length > 85 ? `${title.slice(0, 85)}...` : title;
   };
 
   return (
@@ -60,7 +73,9 @@ const WatchPage = () => {
         </div>
       </div>
       <div className="ml-14 mt-2 w-[906px]">
-        <p className="text-xl font-semibold">{videoDetails?.snippet?.title}</p>
+        <p className="text-xl font-semibold">
+          {getTrimmedVideoTitle(videoDetails?.snippet?.title)}
+        </p>
         <div className="flex mt-4 justify-between">
           <div className="flex">
             <FontAwesomeIcon
@@ -103,7 +118,7 @@ const WatchPage = () => {
           </div>
         </div>
       </div>
-      <CommentsContainer />
+      <CommentsContainerSingle comments={comments} />
     </div>
   );
 };

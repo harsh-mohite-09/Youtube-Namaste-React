@@ -34,3 +34,7 @@ export const getSearchQueryUrl = (query) => {
 export const getVideoDetailsUrl = (videoId) => {
   return `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`;
 };
+
+export const getCommentsUrl = (videoId) => {
+  return `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&videoId=${videoId}&key=${API_KEY}`;
+};
