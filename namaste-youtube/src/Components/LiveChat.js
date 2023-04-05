@@ -16,8 +16,8 @@ const LiveChat = () => {
       // console.log("API Polling");
       dispatch(
         appendChat({
-          name: "Akshay",
-          message: "Hi. I am Akshay Saini. " + id,
+          name: "User Name",
+          message: "Hi. This is a live chat " + id,
         })
       );
     }, 2000);
