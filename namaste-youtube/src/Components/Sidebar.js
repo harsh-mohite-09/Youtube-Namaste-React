@@ -18,7 +18,11 @@ const Sidebar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
 
   return !isMenuOpen ? null : (
-    <div className="p-3 shadow-lg sidebar-container w-56 col-span-1">
+    <div
+      className={`p-3 shadow-lg sidebar-container w-56 col-span-${
+        isMenuOpen ? "1" : "0"
+      }`}
+    >
       <ul>
         <li>
           <FontAwesomeIcon icon={faHouse} className="mr-4 text-lg" />
