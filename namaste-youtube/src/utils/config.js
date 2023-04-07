@@ -1,3 +1,5 @@
+import API_KEY from "./API_KEY";
+
 export const BUTTON_LIST = [
   "All",
   "Music",
@@ -12,8 +14,6 @@ export const BUTTON_LIST = [
   "Computer Science",
   "Recently uploaded",
 ];
-
-const API_KEY = "AIzaSyCiYQGeImQ5IJ9p15wkz_wi1altVFOe83U";
 
 export const API_URL =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=" +

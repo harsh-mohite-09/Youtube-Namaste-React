@@ -1,4 +1,4 @@
-const API_KEY = "AIzaSyCiYQGeImQ5IJ9p15wkz_wi1altVFOe83U";
+import API_KEY from "./API_KEY";
 
 export const findPrime = (num) => {
   let i,
