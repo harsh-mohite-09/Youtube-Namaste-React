@@ -1,4 +1,4 @@
-import API_KEY from "./API_KEY";
+import API_KEY from "./config";
 
 export const findPrime = (num) => {
   let i,

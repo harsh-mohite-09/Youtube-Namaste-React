@@ -1,4 +1,4 @@
-import API_KEY from "./API_KEY";
+const API_KEY = "AIzaSyCiYQGeImQ5IJ9p15wkz_wi1altVFOe83U";
 
 export const BUTTON_LIST = [
   "All",
@@ -917,3 +917,5 @@ export const SEARCH_DATA = {
     },
   ],
 };
+
+export default API_KEY;
